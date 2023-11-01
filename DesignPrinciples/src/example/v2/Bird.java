@@ -1,4 +1,4 @@
-package example.v0;
+package example.v2;
 
 class Bird {
     private String name;
@@ -25,17 +25,6 @@ class Bird {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public void fly() {
-        //Violation of SRP
-        if(this.type == BirdType.SPARROW) {
-            System.out.println(this.name + " can fly");
-        } else if(this.type == BirdType.PEACKOCK) {
-            System.out.println(this.name + " can't fly");
-        } else if(this.type == BirdType.PIGEON) {
-            System.out.println(this.name + " can fly");
-        }
     }
 
     public void makeSound() {
