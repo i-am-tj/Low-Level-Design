@@ -1,0 +1,1 @@
+Create a singleton class. Take an example of Database class that gets called in a multithreaded environment.
