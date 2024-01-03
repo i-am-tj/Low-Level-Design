@@ -10,7 +10,7 @@ Collection Hierarchy -
 
 public class CollectionsDemo {
     public static void analyseList(List<String> list) {
-        list.add("Tripura");
+        list.add("Agartala");
         list.add("Bangalore");
         list.add("Delhi");
         list.add("Vellore");
@@ -19,7 +19,7 @@ public class CollectionsDemo {
     }
 
     public static void analyseSet(Set<String> set) {
-        set.add("Tripura");
+        set.add("Agartala");
         set.add("Bangalore");
         set.add("Delhi");
         set.add("Vellore");
@@ -28,7 +28,7 @@ public class CollectionsDemo {
     }
 
     public static void analyseMap(Map<String, Integer> map) {
-        map.put("Tripura", 20);
+        map.put("Agartala", 20);
         map.put("Vellore", 4);
         map.put("Bangalore", 2);
         map.put("Delhi", 1);
