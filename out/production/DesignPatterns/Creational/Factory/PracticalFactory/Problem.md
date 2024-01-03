@@ -1,0 +1,1 @@
+Let us say there is a User class. Let us implement different types of User based on input using Practical Factory Design Pattern.
