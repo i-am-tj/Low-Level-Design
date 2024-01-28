@@ -1,0 +1,1 @@
+Given a Student class. Create a copy of Student. Use prototype design pattern to solve it.
