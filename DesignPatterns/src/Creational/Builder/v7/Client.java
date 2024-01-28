@@ -17,7 +17,7 @@ public class Client {
         // 6. If we make getBuilder() non-static then we wouldn't be able to create the object using Student.getBuilder()
         // 7. Thus, we moved ahead with making the Builder class static.
 
-        // This commences the Builder design pattern understanding
+        // This ends the Builder design pattern understanding
 
     }
 }

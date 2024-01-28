@@ -1,0 +1,1 @@
+Create a Database interface and different types of it. There is also a Query interface which performs corresponding queries. Create required Abstract Factory Method to call a query from any database class.

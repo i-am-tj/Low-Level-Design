@@ -1,0 +1,1 @@
+Implement a Bird and Season class and give me the happiest Bird in that season using Factory Design Pattern
