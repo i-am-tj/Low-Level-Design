@@ -8,6 +8,6 @@ import com.lldprac.parkinglot.models.VehicleType;
 
 public class TicketController {
     public CreateTicketResponseDto generateTicket(CreateTicketRequestDto createTicketRequestDto) {
-
+        return null;
     }
 }
