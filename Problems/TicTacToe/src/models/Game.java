@@ -24,7 +24,7 @@ public class Game {
         return new Builder();
     }
 
-    public Game(int dimension, List<Player> players, List<WinningStrategy> winningStrategies) {
+    private Game(int dimension, List<Player> players, List<WinningStrategy> winningStrategies) {
         this.moves = new ArrayList<>();
         this.board = new Board(dimension);
         this.players = players;
@@ -95,7 +95,7 @@ public class Game {
             validateUniqueSymbolForPlayers();
         }
 
-        private Game Build() throws DuplicateSymbolException, MoreThanOneBotException, PlayersCountDimensionMismatchException {
+        public Game build() throws DuplicateSymbolException, MoreThanOneBotException, PlayersCountDimensionMismatchException {
             validate();
             return new Game(dimension, players, winningStrategies);
         }
@@ -127,7 +127,34 @@ public class Game {
     }
 
     public void makeMove() {
-        Player currPlayer = players.get(currPlayerIdx + 1);
+        //1. Get Current Player
+        Player currPlayer = players.get((currPlayerIdx + 1) % players.size());
+        System.out.println("Player: " + currPlayer.getName() + "'s turn.");
+        //2. Make a move
+        Move move = currPlayer.makeMove(board);
+        System.out.println("Player: " + currPlayer.getName() + " made a move at row: " + move.getCell().getRow() + " column: " + move.getCell().getCol());
+        //3. Validate move
+        if(!validateMove(move)) {
+            System.out.println("Invalid move. Please try again");
+            return;
+        }
+        //4. Change cell status in the board
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        Cell cellChange = board.getBoard().get(row).get(col);
+        cellChange.setCellStatus(CellStatus.FILLED);
+        cellChange.setPlayer(currPlayer);
+        //5. Add current move to moves
+        moves.add(new Move(currPlayer, cellChange));
+        //6. Set the curr player
+        currPlayerIdx = (currPlayerIdx + 1) % players.size();
+        //7. Check winner
+        if(checkWinner(board, move)) {
+            gameStatus = GameStatus.WIN;
+            winner = currPlayer;
+        } else if (moves.size() == board.getSize() * board.getSize()) {
+            gameStatus = GameStatus.DRAW;
+        }
     }
 
     public List<Move> getMoves() {
