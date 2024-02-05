@@ -128,7 +128,7 @@ public class Game {
 
     public void makeMove() {
         //1. Get Current Player
-        Player currPlayer = players.get((currPlayerIdx + 1) % players.size());
+        Player currPlayer = players.get(currPlayerIdx);
         System.out.println("Player: " + currPlayer.getName() + "'s turn.");
         //2. Make a move
         Move move = currPlayer.makeMove(board);
@@ -146,15 +146,38 @@ public class Game {
         cellChange.setPlayer(currPlayer);
         //5. Add current move to moves
         moves.add(new Move(currPlayer, cellChange));
-        //6. Set the curr player
-        currPlayerIdx = (currPlayerIdx + 1) % players.size();
-        //7. Check winner
+        //6. Check winner
         if(checkWinner(board, move)) {
             gameStatus = GameStatus.WIN;
             winner = currPlayer;
+            return;
         } else if (moves.size() == board.getSize() * board.getSize()) {
             gameStatus = GameStatus.DRAW;
+            return;
         }
+        //7. Set the curr player to next player
+        currPlayerIdx = (currPlayerIdx + 1) % players.size();
+    }
+
+    public void undo() {
+        //1. Handle for no moves
+        if(moves.isEmpty()) {
+            System.out.println("No moves to revert to. Please continue with moves.");
+            return;
+        }
+        //1. Revert moves
+        Move lastMove = moves.get(moves.size() - 1);
+        for(WinningStrategy winningStrategy : winningStrategies) {
+            winningStrategy.handleUndo(board, lastMove);
+        }
+        //2. Set Cell State
+        Cell cell = lastMove.getCell();
+        cell.setCellStatus(CellStatus.EMPTY);
+        cell.setPlayer(null);
+        //3. Remove last move
+        moves.remove(lastMove);
+        //4. Set current player to last player
+        currPlayerIdx = (currPlayerIdx - 1 + players.size()) % players.size();
     }
 
     public List<Move> getMoves() {

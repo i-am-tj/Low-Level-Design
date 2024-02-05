@@ -35,4 +35,28 @@ public class OrderOneDiagonalWinningStrategy implements WinningStrategy{
         }
         return false;
     }
+
+    @Override
+    public void handleUndo(Board board, Move move) {
+        //1. Get row and col from move
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        //2. Get Player Symbol
+        Symbol symbol = move.getPlayer().getSymbol();
+        //3. Decrement the Symbol from both maps (if exists)
+        if(row == col) {
+            if(leftDiagCounter.containsKey(move.getPlayer().getSymbol())) {
+                int val = leftDiagCounter.get(symbol) - 1;
+                if(val == 0) leftDiagCounter.remove(symbol);
+                else leftDiagCounter.put(symbol, val);
+            }
+        }
+        if(row + col == board.getSize() - 1) {
+            if(rightDiagCounter.containsKey(move.getPlayer().getSymbol())) {
+                int val = rightDiagCounter.get(symbol) - 1;
+                if(val == 0) rightDiagCounter.remove(symbol);
+                else rightDiagCounter.put(symbol, val);
+            }
+        }
+    }
 }

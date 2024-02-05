@@ -2,6 +2,7 @@ package strategies.winningstrategies;
 
 import models.Board;
 import models.Move;
+import models.Player;
 import models.Symbol;
 
 import java.util.HashMap;
@@ -26,4 +27,20 @@ public class OrderOneRowWinningStrategy implements WinningStrategy {
         }
         return false;
     }
+
+    @Override
+    public void handleUndo(Board board, Move move) {
+        //1. Get row from move
+        int row = move.getCell().getRow();
+        //2. Get Player Symbol
+        Symbol symbol = move.getPlayer().getSymbol();
+        //3. Decrement the Symbol from map
+        HashMap<Symbol, Integer> curr = rowCounter.get(row);
+        int val = curr.get(symbol) - 1;
+        if(val == 0) curr.remove(symbol);
+        else curr.put(symbol, val);
+        rowCounter.put(row, curr);
+    }
+
+
 }

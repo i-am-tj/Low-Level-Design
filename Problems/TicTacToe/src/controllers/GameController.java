@@ -27,8 +27,8 @@ public class GameController {
         return game.getGameStatus();
     }
 
-    public Game undo(Game game) {
-        return null;
+    public void undo(Game game) {
+        game.undo();
     }
 
     public Player getWinner(Game game) {

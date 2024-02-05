@@ -26,4 +26,18 @@ public class OrderOneColumnWinningStrategy implements WinningStrategy {
         }
         return false;
     }
+
+    @Override
+    public void handleUndo(Board board, Move move) {
+        //1. Get row from move
+        int col = move.getCell().getCol();
+        //2. Get Player Symbol
+        Symbol symbol = move.getPlayer().getSymbol();
+        //3. Decrement the Symbol from map
+        HashMap<Symbol, Integer> curr = colCounter.get(col);
+        int val = curr.get(symbol) - 1;
+        if(val == 0) curr.remove(symbol);
+        else curr.put(symbol, val);
+        colCounter.put(col, curr);
+    }
 }

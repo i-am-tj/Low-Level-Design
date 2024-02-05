@@ -142,6 +142,7 @@ public class Main {
                             System.out.println("Invalid input: " + u + ". Hence continuing.");
                         }
                     }
+                    if(!start) start = true;
                     //3. Make move
                     gameController.makeMove(game);
                 }
