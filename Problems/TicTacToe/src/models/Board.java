@@ -20,6 +20,7 @@ public class Board {
 
     public void printBoard() {
         for(List<Cell> row : board) {
+            System.out.println("|");
             for(Cell cell : row) {
                 cell.display();
             }

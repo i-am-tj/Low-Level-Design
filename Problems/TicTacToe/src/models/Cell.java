@@ -14,10 +14,27 @@ public class Cell {
 
     public void display() {
         if(player == null) {
-            System.out.print("| - |");
+            System.out.print(" - |");
         } else {
-            System.out.print("| " + player.getSymbol().getaChar() + " |");
+            System.out.print(" " + player.getSymbol().getaChar() + " |");
         }
+    }
+
+    public void displayEnds(boolean start) {
+        if(start) {
+            if(player == null) {
+                System.out.print("| - ");
+            } else {
+                System.out.print("| " + player.getSymbol().getaChar());
+            }
+        } else {
+            if(player == null) {
+                System.out.print(" - |");
+            } else {
+                System.out.print(" " + player.getSymbol().getaChar() + " |");
+            }
+        }
+
     }
 
     public int getRow() {

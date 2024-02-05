@@ -18,12 +18,4 @@ public class Bot extends Player {
         Cell cell = botPlayingStrategy.makeMove(board);
         return new Move(this, cell);
     }
-
-    public BotDifficultyLevel getBotDifficultyLevel() {
-        return botDifficultyLevel;
-    }
-
-    public void setBotDifficultyLevel(BotDifficultyLevel botDifficultyLevel) {
-        this.botDifficultyLevel = botDifficultyLevel;
-    }
 }
