@@ -165,18 +165,18 @@ public class Game {
             System.out.println("No moves to revert to. Please continue with moves.");
             return;
         }
-        //1. Revert moves
+        //2. Revert moves
         Move lastMove = moves.get(moves.size() - 1);
         for(WinningStrategy winningStrategy : winningStrategies) {
             winningStrategy.handleUndo(board, lastMove);
         }
-        //2. Set Cell State
+        //3. Set Cell State
         Cell cell = lastMove.getCell();
         cell.setCellStatus(CellStatus.EMPTY);
         cell.setPlayer(null);
-        //3. Remove last move
+        //4. Remove last move
         moves.remove(lastMove);
-        //4. Set current player to last player
+        //5. Set current player to last player
         currPlayerIdx = (currPlayerIdx - 1 + players.size()) % players.size();
     }
 
