@@ -12,9 +12,10 @@ public class Game {
     List<Move> moves;
     List<Player> players;
     List<GameEntity> gameEntities;
+    Dice dice;
     int currPlayerIdx;
-    GameStatus gameStatus;
-    Player winner;
+    private GameStatus gameStatus;
+    private Player winner;
 
 
     public static Builder getBuilder() {
@@ -23,10 +24,12 @@ public class Game {
 
     private Game(int dimension, List<Player> players, List<GameEntity> gameEntities) {
         this.moves = new ArrayList<>();
-        this.board = new Board(dimension);
+        this.board = new Board(dimension, gameEntities);
         this.gameEntities = gameEntities;
         this.players = players;
         this.currPlayerIdx = 0;
+        this.dice = new NormalDice();
+        this.gameStatus = GameStatus.IN_PROGRESS;
     }
 
     public static class Builder {
@@ -65,6 +68,14 @@ public class Game {
     }
 
     public void makeMove() {
+        //1. Get Current Player
+        Player currPlayer = players.get(currPlayerIdx);
+        System.out.println("Player: " + currPlayer.getName() + "'s turn.");
+        //2. Make a move
+        Move currMove = currPlayer.makeMove(board, dice);
+
+
+        //3. Check if winner
     }
 
     public GameStatus getGameStatus() {
