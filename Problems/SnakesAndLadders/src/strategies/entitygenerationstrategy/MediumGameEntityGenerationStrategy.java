@@ -9,13 +9,18 @@ import java.util.*;
 public class MediumGameEntityGenerationStrategy implements GameEntityGenerationStrategy{
     @Override
     public List<Pair> generateEntities() {
-        // Generate 8 random number set from 5 to 95
-        Random random = new Random();
         Set<Integer> set = new HashSet<>();
-        int min = 5;
-        int max = 95;
+        //Generate 3 numbers from 3 to 48
+        int min1 = 3;
+        int max1 = 48;
+        while(set.size() != 4) {
+            set.add(new Random().nextInt(max1 - min1) + 3);
+        }
+        //Generate 53 numbers from 95
+        int min2 = 53;
+        int max2 = 95;
         while(set.size() != 8) {
-            set.add(new Random().nextInt(max - min) + 1);
+            set.add(50 + new Random().nextInt( max2 - min2) + 1);
         }
         List<Integer> combinations = new ArrayList<>(set);
         Collections.sort(combinations);

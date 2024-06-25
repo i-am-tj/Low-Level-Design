@@ -101,15 +101,15 @@ public class Main {
                 }
             }
 
-            System.out.println("============ LETS BEGIN: TIC TAC TOE ============");
+            System.out.println("============ LETS BEGIN: SNAKE AND LADDER ============");
             Game game = gameController.startGame(playerList, gameEntities);
             System.out.println("============ Game started ============");
-//            while (gameController.checkStatus(game).equals(GameStatus.IN_PROGRESS)) {
-//                //1. Print Board (every time)
-//                gameController.printBoard(game);
-//                //2. Make move
-//                gameController.makeMove(game);
-//            }
+            while (gameController.checkStatus(game).equals(GameStatus.IN_PROGRESS)) {
+                //1. Print Board (every time)
+                gameController.printBoard(game);
+                //2. Make move
+                gameController.makeMove(game);
+            }
             gameController.printBoard(game);
             System.out.println("===== Game ended ======");
             //System.out.println(gameController.getWinner(game).getName() + " won the match. Thank you for playing.");

@@ -73,9 +73,11 @@ public class Game {
         System.out.println("Player: " + currPlayer.getName() + "'s turn.");
         //2. Make a move
         Move currMove = currPlayer.makeMove(board, dice);
-
-
         //3. Check if winner
+        if(currMove.getCell().row == 9 && currMove.getCell().col == 9) {
+            gameStatus = GameStatus.ENDED;
+            winner = currPlayer;
+        }
     }
 
     public GameStatus getGameStatus() {
