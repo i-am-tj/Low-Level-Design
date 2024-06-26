@@ -19,5 +19,9 @@ public class Client {
         // 1. Setting and returning defensive copy
         // 2. Making the data members final (not necessary but helps)
 
+        // This ends the concept of immutability in classes
+
+        // In the next example we will see an easy implementation and difference between final in class vs final in reference of a class
+
     }
 }
