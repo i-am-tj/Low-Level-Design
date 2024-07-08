@@ -1,4 +1,4 @@
-package Concurrency.Intro;
+package Concurrency.Intro.v1;
 
 public class NumberPrinter implements Runnable {
 
