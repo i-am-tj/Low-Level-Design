@@ -25,5 +25,5 @@ Create a simple thread pool using the ExecutorService framework. Submit multiple
 Q9. **Thread Interruption** \
 Write a program where one thread interrupts another thread. Handle the interruption properly and print a message indicating that the thread was interrupted.
 
-Q10. **Deadlock Simulation**
+Q10. **Deadlock Simulation** \
 Write a program that intentionally creates a deadlock situation between two threads. Then, modify the program to avoid the deadlock using proper synchronization techniques.
