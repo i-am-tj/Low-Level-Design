@@ -4,8 +4,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.Arrays.stream;
-
 public class Client {
 
     public static List<Student> injectValuesInList() {
@@ -126,6 +124,18 @@ public class Client {
                         .toList();
         System.out.println(sortedByCGPADesc);
         System.out.println("=====================================");
+        System.out.println("SORTED BY CGPA AND AGE");
+        List<Student> sortedByCGPAAndAge = studentsList.stream()
+                        .sorted(Comparator.comparingDouble(Student::getCgpa).thenComparingInt(Student::getAge))
+                        .toList();
+        System.out.println(sortedByCGPAAndAge);
+        System.out.println("=====================================");
+        System.out.println("SORTED BY NAME LENGTH");
+        List<Student> sortedByNameLength = studentsList.stream()
+                        .sorted(Comparator.comparingInt(student -> student.getName().length()))
+                        .toList();
+        System.out.println(sortedByNameLength);
+        System.out.println("=====================================");
 
         // 5. Aggregating Data
         System.out.println("=====================================");
@@ -228,12 +238,46 @@ public class Client {
 
         // 11. Matching Students
         System.out.println("=====================================");
-
+        System.out.println("CHECK IF ALL STUDENTS HAVE CGPA > 8.0");
+        boolean checkCGPAAll = studentsList.stream()
+                        .allMatch(student -> student.getCgpa() > 8.0);
+        System.out.println("All Students have CGPA > 8.0? " + checkCGPAAll);
+        System.out.println("=====================================");
+        System.out.println("CHECK IF ANY STUDENT HAS CGPA > 9.0");
+        boolean checkCGPAAny = studentsList.stream()
+                        .anyMatch(student -> student.getCgpa() > 9.0);
+        System.out.println("Any Student has CGPA > 9.0? " + checkCGPAAny);
+        System.out.println("=====================================");
+        System.out.println("CHECK IF ALL STUDENTS ARE OLDER THAN 15");
+        boolean checkAgeAll = studentsList.stream()
+                        .allMatch(student -> student.getAge() > 15);
+        System.out.println("All Students are older than 15? " + checkAgeAll);
+        System.out.println("=====================================");
+        System.out.println("CHECK IF ANY STUDENT HAS CHEMISTRY MARKS < 40");
+        boolean checkChemistryAny = studentsList.stream()
+                        .anyMatch(student -> student.getMarks().getOrDefault(Subject.CHEMISTRY, 50) < 40);
+        System.out.println("Any Student has Chemistry Marks lesser than 40? " + checkChemistryAny);
+        System.out.println("=====================================");
+        System.out.println("CHECK IF NONE OF THE STUDENT HAS CGPA < 5.0");
+        boolean noneCGPA = studentsList.stream()
+                        .allMatch(student -> student.getCgpa() > 5.0);
+        System.out.println("None has CGPA < 5.0? " + noneCGPA);
         System.out.println("=====================================");
 
+        // 12. Finding First and Any Student
+        System.out.println("=====================================");
+        System.out.println("FIND FIRST STUDENT");
+        Optional<Student> firstStudent = studentsList.stream()
+                        .findFirst();
+        firstStudent.ifPresent(System.out::println);
+        System.out.println("=====================================");
+        System.out.println("FIND ANY STUDENT WITH AGE > 20");
+        Optional<Student> studentAged = studentsList.stream()
+                        .filter(student -> student.getAge() > 20).findFirst();
+        studentAged.ifPresent(System.out::println);
         System.out.println("=====================================");
 
-        System.out.println("=====================================");
+
 
     }
 }
